@@ -4,7 +4,7 @@
 
 ---
 
-I'm a senior manager with a long coding and architectural background who doesn't get to code that often anymore. There is a growing sentiment that this is the worst time in history to be a manager; you are going to miss the AI revolution from the sidelines. I'm not sure that's entirely true, but it pushed me to get involved more directly. Ironically, the manager skill set turns out to be oddly relevant: the work is shifting toward writing specs and coordinating context, which is closer to what managers already do than to writing code line by line. Architectural experience matters even more: knowing how services connect, where boundaries belong, and which decisions need to be explicit is exactly what makes a spec useful to an AI agent.
+I'm a senior manager with a long background in coding and architecture who doesn't get to code that often anymore. There is a growing sentiment that this is the worst time in history to be a manager; you are going to miss the AI revolution from the sidelines. I'm not sure that's entirely true, but it pushed me to get involved more directly. Ironically, the manager skill set turns out to be oddly relevant: the work is shifting toward writing specs and coordinating context, which is closer to what managers already do than to writing code line by line. Architectural experience matters even more: knowing how services connect, where boundaries belong, and which decisions need to be explicit is exactly what makes a spec useful to an AI agent.
 
 I tried AI-assisted coding last year. It was promising but the models weren't quite there; you still spent more time fixing the output than you saved generating it. The latest models changed that equation; they are good enough that the work shifted from writing code to writing specs and managing context.
 
@@ -23,8 +23,6 @@ Once a feature touches three services, the problem is no longer just “give the
 When I picked up my project again, I ran into all of these problems firsthand and spent a few weeks experimenting until a repeatable workflow emerged.
 
 This article describes that workflow: a centralized Spec Hub above multiple repos, per-service implementation prompts treated as reusable artifacts, and session boundaries that align with service boundaries. None of the ingredients are new. The value is in the combination.
-
-The payoff is practical. A well-written prompt lands in a service repo, the agent reads three pattern-reference files, implements eight new ones, and never scans the other 200. That precision is what makes the setup worth it.
 
 ## Context Engineering, in Practical Terms
 
