@@ -423,6 +423,8 @@ The honest tradeoff is the top row's own failure mode: a Spec Hub is only as goo
 
 And context load isn't only an accuracy concern — it's a billing one. Tools like GitHub Copilot now enforce token-based usage limits, and I've watched people burn through a monthly allocation faster than expected, largely because every request dragged too much codebase into context. A workflow that keeps each session small isn't just about precision; it's about making your token budget last.
 
+But be honest about where the savings come from, because the hub isn't free. Designing the feature file, cascading it into the specs, and reconciling at the end all cost tokens too — so a single one-off change in one repo can easily cost *more* under this workflow than just prompting the agent directly. The savings are real but they're *amortized*: a spec earns its keep when the same contract is read by several services, reused across many fresh sessions, or handed to other people. The break-even is reuse. For a solo change in a single repo, skip the ceremony and lean on the cheap half — an explicit, file-referenced prompt and a current repo instruction file capture most of the per-session savings on their own. The hub is what makes those prompts reusable enough to pay back their authoring cost across a multi-repo team, and that — not the workflow itself — is where the token math turns positive.
+
 ---
 
 ## Why it works: it's context engineering, not prompt engineering
