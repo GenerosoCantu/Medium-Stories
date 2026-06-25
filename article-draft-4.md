@@ -264,15 +264,7 @@ The session boundaries are deliberate and align with service boundaries:
 - If the agent produces a bug, fix it *in the same session* — it has the full implementation in context and can correct precisely.
 - A different feature gets a different session.
 
-The rule is easiest to remember as a mapping from situation to session — the session boundary simply tracks the context boundary:
-
-```text
-Designing / generating prompts          →  New session in the SpecHub workspace
-Implementing in service repo A          →  New session in repo A
-Implementing in service repo B          →  New session in repo B
-Bug fix or follow-up on current work    →  Same session
-Reconciling specs after implementation  →  New session in the SpecHub workspace
-```
+The rule is easy to hold in your head because the session boundary simply tracks the context boundary. Designing a feature or generating its prompts is a fresh session in the SpecHub workspace; implementing in each service repo is a fresh session in that repo; reconciling the specs afterward is, again, a fresh session back in the hub. The only time you *stay* in a session is for a bug fix or follow-up on work the current session just produced.
 
 Verification is a human gate, not an automated one. A person runs the build, exercises the new endpoints or UI, and reads the diff before the work counts as done. The workflow makes the agent's output predictable and convention-compliant; it does not make it self-certifying. Nothing graduates to Step 5 until a human has confirmed it actually works.
 
@@ -425,6 +417,8 @@ Cross-service work in one session  Very high Low           Weak          Attenti
 * if specs stay current
 ```
 
+(This is the one wide block in the article. It imports to Medium as a code block like everything else, but if you want it to look designed there, export just this table as an image and swap it in after import — see the publishing notes.)
+
 The honest tradeoff is the top row's own failure mode: a Spec Hub is only as good as your discipline in reconciling it. That's the entire reason Step 5 is non-negotiable.
 
 And context load isn't only an accuracy concern — it's a billing one. Tools like GitHub Copilot now enforce token-based usage limits, and I've watched people burn through a monthly allocation faster than expected, largely because every request dragged too much codebase into context. A workflow that keeps each session small isn't just about precision; it's about making your token budget last.
@@ -486,6 +480,7 @@ It's a small fictional multi-tenant storefront platform ("Plaza") — five servi
 ### Publishing notes (delete this section before importing to Medium)
 
 - Author here in Markdown, push to GitHub, then use Medium's **Import a story** with the file URL — it pulls headings, lists, links, and inline code cleanly.
-- This article deliberately uses **no tables** (Medium can't render them); everything is prose, lists, or code blocks, so the import needs no manual conversion.
+- This article uses **no Markdown tables** (Medium flattens them on import). Tabular content is expressed either as prose or as monospaced fenced code blocks, both of which import cleanly with no manual conversion.
+- The one exception worth dressing up is the approach-comparison block under "Where this sits among the alternatives." It's wide, so on mobile the code block will scroll horizontally. If you want it to look polished, export that single table as an image (e.g. screenshot the rendered Markdown or use carbon.now.sh), embed the PNG in Medium, and add alt text for accessibility. Leave every other block as-is.
 - After import, verify the fenced ```text``` and ```markdown``` blocks rendered as Medium code blocks. If any flattened to plain text, select them and apply Medium's Code Block formatting.
 - Replace the title/subtitle with Medium's native title + subtitle fields rather than leaving them as body headings.
