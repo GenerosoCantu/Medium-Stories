@@ -264,6 +264,16 @@ The session boundaries are deliberate and align with service boundaries:
 - If the agent produces a bug, fix it *in the same session* — it has the full implementation in context and can correct precisely.
 - A different feature gets a different session.
 
+The rule is easiest to remember as a mapping from situation to session — the session boundary simply tracks the context boundary:
+
+```text
+Designing / generating prompts          →  New session in the SpecHub workspace
+Implementing in service repo A          →  New session in repo A
+Implementing in service repo B          →  New session in repo B
+Bug fix or follow-up on current work    →  Same session
+Reconciling specs after implementation  →  New session in the SpecHub workspace
+```
+
 Verification is a human gate, not an automated one. A person runs the build, exercises the new endpoints or UI, and reads the diff before the work counts as done. The workflow makes the agent's output predictable and convention-compliant; it does not make it self-certifying. Nothing graduates to Step 5 until a human has confirmed it actually works.
 
 Why so strict about fresh sessions? Because context from a previous conversation — even a *successful* one — is noise. Every ongoing session accumulates invisible state: prior responses, intermediate reasoning, assumptions about file contents. The model may pattern-match on the wrong prior example or assume a file is in a state it no longer is. A clean session with a self-contained prompt produces cleaner, more predictable output. The prompt carries the context; the session doesn't have to.
@@ -346,6 +356,44 @@ The overview answers *system-wide* questions; the per-service specs answer *serv
 
 ---
 
+## The repo-level instruction file: a safety net
+
+The Spec Hub is the authority, but people still ask ad-hoc questions *inside* a repo — "why is this guard failing?", "add a field to this DTO." The lean `.github/copilot-instructions.md` in each service repo is the safety net for those moments. It auto-loads into every session in that repo and supplies the stable, repo-wide conventions the agent needs to avoid obvious mistakes — and nothing feature-specific, so there's almost nothing in it that *can* drift from the hub.
+
+Here's a representative one for a NestJS API:
+
+```markdown
+# my-api — Copilot Instructions
+
+## Stack
+NestJS v9 / TypeScript / MongoDB (Mongoose) / JWT auth
+
+## Conventions
+- UUIDs via Node crypto.randomUUID() — never use nanoid or uuid package
+- All schemas: versionKey: false, timestamps: true
+- tenant field on every schema, indexed
+- Guards: @UseGuards(JwtAuthGuard) on controllers, not individual methods
+- Error handling: standard NestJS HttpException with descriptive messages
+
+## Module structure
+src/{feature}/{feature}.module.ts
+src/{feature}/{feature}.service.ts
+src/{feature}/{feature}.controller.ts
+src/{feature}/schemas/{feature}.schema.ts
+src/{feature}/dto/create-{feature}.dto.ts
+src/{feature}/dto/update-{feature}.dto.ts
+
+## Environment
+PORT=4000
+MONGODB_URI from env
+JWT_SECRET from env
+CDN_URL from env
+```
+
+Its job is not to carry feature design — that's what prompts are for. Its job is to make local conventions unambiguous, so even an off-the-cuff request lands in the right shape. (Claude Code reads `CLAUDE.md`, Codex reads `AGENTS.md`; the prompt files themselves stay plain Markdown and portable across all of them.)
+
+---
+
 ## "Isn't this just Spec Kit?"
 
 It's the natural objection, and the answer sharpens what SpecHub is for. Tools like GitHub Spec Kit and AWS Kiro popularized spec-driven development, and they're good at what they do — but they're **single-repo by design.** They answer *"how do I give my agent enough context to build a feature in this project?"* They don't answer *"how do I coordinate one feature across five services and three repos without duplicating context or tangling sessions?"*
@@ -357,6 +405,29 @@ That's the layer SpecHub adds, and the two coexist naturally: Spec Kit can handl
 ## A note on skills
 
 Another fair question is whether agent *skills* — reusable, named procedures like Claude Code Skills — overlap with any of this. They're complementary, not competing, because they operate on different things. A spec encodes a *contract*: what the system is. A skill encodes a *repeatable procedure*: how to perform an activity. The recurring routines in this workflow — generating a prompt from a spec, running the close-the-loop reconciliation, archiving a feature file — are exactly the kind of multi-step motions worth packaging as a skill. Doing so keeps the procedure out of the context window until it's actually needed, and makes every run identical instead of re-improvised. Put plainly: specs say *what*, skills say *how to operate on it*. A mature setup uses both — specs as the source of truth, skills as the repeatable motions over that truth.
+
+---
+
+## Where this sits among the alternatives
+
+It helps to see the workflow next to the things people reach for instead. The comparison is qualitative — workflow tradeoffs, not benchmarks:
+
+```text
+Approach                           Context   Convention    Cross-repo    Main failure mode
+                                   load      reliability   coordination
+──────────────────────────────────────────────────────────────────────────────────────────
+Centralized Spec Hub               Low       High*         Strong        Specs drift if not reconciled
+Per-repo spec workflow             Low–med   High in-repo  Weak          Cross-service deps stay implicit
+Per-service spec copies per repo   Medium    Medium        Weak          Design drift across copies
+Direct prompting inside a repo     High      Med–low       Weak          Agent infers from too much source
+Cross-service work in one session  Very high Low           Weak          Attention split across codebases
+
+* if specs stay current
+```
+
+The honest tradeoff is the top row's own failure mode: a Spec Hub is only as good as your discipline in reconciling it. That's the entire reason Step 5 is non-negotiable.
+
+And context load isn't only an accuracy concern — it's a billing one. Tools like GitHub Copilot now enforce token-based usage limits, and I've watched people burn through a monthly allocation faster than expected, largely because every request dragged too much codebase into context. A workflow that keeps each session small isn't just about precision; it's about making your token budget last.
 
 ---
 
@@ -372,9 +443,29 @@ Step back and the pattern is clear. Every rule in this workflow exists to contro
 - **Fresh session per service** → no stale context bleeding across boundaries.
 - **Close-the-loop reconciliation** → the hub always matches reality, so the *next* feature starts from truth.
 
+If it helps to carry away a checklist instead of a diagram, the whole workflow reduces to five principles — each one an application of the same context-control idea:
+
+1. **The prompt is self-contained.** If a session would need to ask a question or read an unnamed file, the prompt is incomplete — fix it before implementing.
+2. **One prompt per service, one session per prompt.** Cross-service features fan out into separate prompts, never one tangled session.
+3. **Session boundaries align with context boundaries.** A new repo or a new feature means a new session; a bug fix stays in the current one.
+4. **Reconcile after every implementation, not later.** The hub is updated the moment the work is verified, not "soon."
+5. **Specs describe what is implemented; feature files describe what is not.** The source of truth never carries half-settled ideas.
+
 None of these ingredients is novel on its own. The value is in the combination, and in the discipline of always keeping the spec layer authoritative. The goal was never to give the agent *more* context. It was to give it exactly the right context, and nothing else.
 
 If you're doing AI-assisted work across more than one repo and it feels like it's fraying, the fix probably isn't a cleverer prompt. It's a place for your specs to live, a loop that keeps them honest, and session boundaries that match your service boundaries.
+
+---
+
+## Getting started: a minimal setup
+
+You don't need the full structure to get value — start with a skeleton and let it grow:
+
+1. **Create the hub.** Stand up a separate `{platform}-specs` workspace with `00-architecture-overview.md`, a pending-features status table, and one service spec for your primary API.
+2. **Add repo-level context files.** Drop a lean `.github/copilot-instructions.md` into each service repo (or `CLAUDE.md` for Claude Code, `AGENTS.md` for Codex) with stack, naming conventions, and module layout.
+3. **Run one feature through the loop.** Design it in `Features/FEATURE-{name}.md`, cascade it into the relevant specs, generate one prompt per service, and implement them in dependency order.
+
+After a few features the pattern becomes second nature. The prompts get sharper because the specs get more explicit, and the specs get more explicit because the prompts keep exposing whatever was underspecified.
 
 ---
 
