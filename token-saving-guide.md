@@ -1,4 +1,4 @@
-# DSX Team: Token Conservation Guide
+# Token Conservation Guide
 
 *How to get more done with AI coding agents without burning through your monthly allocation.*
 
