@@ -467,7 +467,13 @@ After a few features the pattern becomes second nature. The prompts get sharper 
 
 ## See the full example
 
-Reading about a spec layer only gets you so far; it's easier to judge once you can open the files. I put a complete, runnable-on-paper example Spec Hub on GitHub:
+Reading about a spec layer only gets you so far. The video below walks through the entire workflow and implements a real feature end to end using the example Spec Hub — all five steps, from design file to reconciled spec:
+
+https://www.youtube.com/watch?v=qgIOkFdrEK4
+
+*[Watch on YouTube](https://www.youtube.com/watch?v=qgIOkFdrEK4)*
+
+If you'd rather read files than watch, I put a complete, runnable-on-paper example Spec Hub on GitHub:
 
 **[github.com/GenerosoCantu/SpecHub-Example](https://github.com/GenerosoCantu/SpecHub-Example)**
 
