@@ -4,7 +4,7 @@
 
 ---
 
-## The problem nobody warns you about
+## One repo is a demo; four repos is the real problem
 
 AI-assisted coding looks magical in a demo: one repo, one prompt, working feature. Then you try it on a real platform, the kind where a single feature spans a public frontend, an admin web app, a backend API, and a static-file CDN service, and the magic leaks away.
 
