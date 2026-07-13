@@ -277,11 +277,7 @@ Start with a skeleton and let it grow:
 2. **Add repo-level instruction files.** Stack, naming conventions, module layout, with the canonical copy kept in the hub.
 3. **Run one feature through the loop.** Feature file, cascade, one prompt per service with a dispatch header, implement in dependency order, reconcile.
 
-A complete example Spec Hub, a fictional five-service storefront platform with one cross-service feature traced end to end, is on GitHub: [github.com/GenerosoCantu/SpecHub-Example](https://github.com/GenerosoCantu/SpecHub-Example). And this video walks the entire workflow through all five steps on a real feature:
-
-https://www.youtube.com/watch?v=qgIOkFdrEK4
-
-*[Watch on YouTube](https://www.youtube.com/watch?v=qgIOkFdrEK4)*
+A complete example Spec Hub, a fictional five-service storefront platform with one cross-service feature traced end to end, is on GitHub: [github.com/GenerosoCantu/SpecHub-Example](https://github.com/GenerosoCantu/SpecHub-Example). 
 
 **Part 2 — What Fifty Features Taught Me** covers everything that only showed up under sustained use: what to do when a spec outgrows the context window, the repo-level instruction file, packaging procedures as skills, keeping the hub honest (staled features, the single-changelog rule, the status board that almost became a history file), routing sessions to the right model tier and the honest token economics, and how SpecHub compares to Spec Kit and OpenSpec.
 
