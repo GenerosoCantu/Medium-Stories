@@ -14,7 +14,7 @@ The instinct is to fix this with better prompts. That's the wrong layer. The rea
 
 SpecHub is the workflow I landed on after hitting every one of these failures on a real multi-service content platform. There's nothing to install: it's a way of organizing specs, prompts, and sessions so the agent always works from clean, deliberate inputs. This first part covers the core: the hub, the reason specs work at all, and the five-step loop every feature moves through.
 
-*If you'd rather read files than prose, there's a complete example Spec Hub on GitHub ([GenerosoCantu/SpecHub-Example](https://github.com/GenerosoCantu/SpecHub-Example)); I come back to it at the end.*
+*If you'd rather read files than prose, there's a complete example Spec Hub on GitHub ([GenerosoCantu/SpecHub-Example](https://github.com/GenerosoCantu/SpecHub-Example)); I come back to it at the end. And if you've already read this and want what scaling it taught me, jump to [Part 2 — What Fifty Features Taught Me](https://medium.com/@gcantuw/spechub-part-2-what-fifty-features-taught-me-about-running-a-spec-first-ai-workflow-5343d0680a12).*
 
 ---
 
@@ -279,7 +279,7 @@ Start with a skeleton and let it grow:
 
 A complete example Spec Hub, a fictional five-service storefront platform with one cross-service feature traced end to end, is on GitHub: [github.com/GenerosoCantu/SpecHub-Example](https://github.com/GenerosoCantu/SpecHub-Example). 
 
-**Part 2 — What Fifty Features Taught Me** covers everything that only showed up under sustained use: what to do when a spec outgrows the context window, the repo-level instruction file, packaging procedures as skills, keeping the hub honest (staled features, the single-changelog rule, the status board that almost became a history file), routing sessions to the right model tier and the honest token economics, and how SpecHub compares to Spec Kit and OpenSpec.
+**[Part 2 — What Fifty Features Taught Me](https://medium.com/@gcantuw/spechub-part-2-what-fifty-features-taught-me-about-running-a-spec-first-ai-workflow-5343d0680a12)** covers everything that only showed up under sustained use: what to do when a spec outgrows the context window, the repo-level instruction file, packaging procedures as skills, keeping the hub honest (staled features, the single-changelog rule, the status board that almost became a history file), routing sessions to the right model tier and the honest token economics, and how SpecHub compares to Spec Kit and OpenSpec.
 
 ---
 

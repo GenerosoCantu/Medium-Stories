@@ -6,7 +6,7 @@
 
 ## Where Part 1 left off
 
-The short version, if you're landing here first: my platform's specifications live in their own workspace, the Spec Hub, separate from every service repo. Specs are treated as context compression: a 200-line contract document the agent reads instead of 2,000 lines of source. Every feature moves through five steps: design it in a feature file, cascade the decisions into the service specs, generate one self-contained prompt per service, implement each prompt in a fresh session inside its repo, then reconcile the specs against the code that actually shipped. ([Part 1 is here](#); link after publication.)
+The short version, if you're landing here first: my platform's specifications live in their own workspace, the Spec Hub, separate from every service repo. Specs are treated as context compression: a 200-line contract document the agent reads instead of 2,000 lines of source. Every feature moves through five steps: design it in a feature file, cascade the decisions into the service specs, generate one self-contained prompt per service, implement each prompt in a fresh session inside its repo, then reconcile the specs against the code that actually shipped. ([Part 1 is here](https://medium.com/@gcantuw/spechub-part-1-how-i-ship-features-across-three-repos-with-an-ai-agent-and-stay-sane-edb6a1db8ffa).)
 
 That's the core. What follows is the part no clean-room description gives you: what the system looks like after roughly fifty features of real use, and which extra pieces earned their place by fixing real friction.
 
@@ -127,13 +127,13 @@ It helps to see the workflow next to the things people reach for instead. The co
 ```text
 Approach                           Context   Convention    Cross-repo    Main failure mode
                                    load      reliability   coordination
-──────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────────────────────────────
 Centralized Spec Hub               Low       High*         Strong        Specs drift if not reconciled
 Per-repo spec workflow             Low–med   High in-repo  Weak          Cross-service deps stay implicit
 Per-service spec copies per repo   Medium    Medium        Weak          Design drift across copies
 Direct prompting inside a repo     High      Med–low       Weak          Agent infers from too much source
 Cross-service work in one session  Very high Low           Weak          Attention split across codebases
-─────────────────────────────────────────────────────────────────────────────────────────-
+──────────────────────────────────────────────────────────────────────────────────────────────────────────
 * if specs stay current
 ```
 
@@ -158,7 +158,7 @@ A complete example Spec Hub, a fictional five-service storefront platform ("Plaz
 ### Publishing notes (delete this section before importing to Medium)
 
 - Push to GitHub, then use Medium's **Import a story** with the file URL.
-- Replace the `(#)` placeholder in the intro with the published Part 1 URL, and add Part 2's URL to Part 1's intro/closing.
+- The intro links to the published Part 1 URL; add Part 2's URL to Part 1's intro/closing once this part is published.
 - The approach-comparison block is wide; on mobile it will scroll horizontally. If you want it polished, export that single block as an image and add alt text.
 - After import, verify the fenced blocks rendered as Medium code blocks; apply Code Block formatting to any that flattened.
 - Replace the title/subtitle with Medium's native title + subtitle fields.
