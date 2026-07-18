@@ -1,13 +1,17 @@
 # SpecHub Demo Script
 
+[Open article in VSC]
 Hi, and welcome. In this demo, I'll walk you through the five-step loop behind the SpecHub AI workflow.
 
-Before we start, what you're seeing in Visual Studio Code is the SpecHub repository. It contains the specs and context documents for the entire application and all of its services.
+What you're seeing here is a SpecHub repository. It contains the specs and context documents for the entire application and all of its services.
 
+[Open WORKFLOW]
 As I explained in the article, the AI agent already knows these five steps and how to follow them. It also knows where to find context for the app and all of its services.
 
+[Open CLAUDE.md]
 CLAUDE.md includes instructions that are automatically loaded into each new Claude session. If you're using Copilot, you can use Copilot instructions instead, or an equivalent setup for another AI tool.
 
+[Open Architecture and Main API]
 This instruction file links to documents that contain context for the application and each service. For example, the architecture overview file covers the whole application, while the Main API file contains context for one microservice.
 
 These files do not contain code. They are compressed context documents for each service in the application.
@@ -16,7 +20,7 @@ In this demo, I'm using a personal project to showcase the SpecHub workflow. The
 
 [open Public Frontend]
 
-This feature adds a block that displays the top five news stories on the website. To support this, I need to create a new analytics microservice. A script on the Public Frontend will trigger requests to the Analytics service and capture section and story views.
+This new feature adds a block to the front page that displays the top news stories for the website. To support this, I need to create a new analytics microservice. A script on the Public Frontend will trigger requests to the Analytics service and capture section and story views.
 
 The Top News component will read its data from a static JSON file on the CDN.
 
