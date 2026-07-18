@@ -2,6 +2,8 @@
 
 Hi, and welcome. In this demo, I'll walk you through the five-step loop behind the SpecHub AI workflow.
 
+Before we start, what you're seeing in Visual Studio Code is the SpecHub repository. It contains the specs and context documents for the entire application and all of its services.
+
 As I explained in the article, the AI agent already knows these five steps and how to follow them. It also knows where to find context for the app and all of its services.
 
 CLAUDE.md includes instructions that are automatically loaded into each new Claude session. If you're using Copilot, you can use Copilot instructions instead, or an equivalent setup for another AI tool.
@@ -30,3 +32,7 @@ In the Control Center web app, I will add an analytics URL and a tenant time zon
 Now let's begin the workflow.
 
 Step 1: Design a new feature. I design features with AI support. My approach is simple: I start by describing the feature in the agent chat, explaining what I want and how it should work.
+
+The agent takes my input and uses the apllications specs to generate the a new feature file, it also knows where to create, how to structure it and what to include. It'll also ask me questions to fill in the missing gaps.
+
+Once a feature file is created, I review it and work with the agent to polish it, add more details or features, until I am 100% satisfied. 
