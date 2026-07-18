@@ -31,7 +31,7 @@ In the Control Center web app, I will add an analytics URL and a tenant time zon
 
 Now let's begin the workflow.
 
-Step 1: Design a new feature. I design features with AI support. My approach is simple: I start by describing the feature in the agent chat, explaining what I want and how it should work.
+Step 1: DESIGN a new feature. I design features with AI support. My approach is simple: I start by describing the feature in the agent chat, explaining what I want and how it should work.
 
 The agent takes my input and uses the application specs to generate a new feature file. It also knows where to create it, how to structure it, and what to include. It will ask follow-up questions to fill in any missing gaps.
 
@@ -41,4 +41,25 @@ You can see the finished feature with all its details. Even before prompts are g
 
 From here, the remaining steps are mostly execution. There are not many decisions left to make; it is mainly about following the workflow.
 
-Step 2.
+Step 2. CASCADE, Write the decisions into the affected service spec(s).
+
+ON THE AGENT DICTATE: cascade this feacture into the affected services. 
+
+Step two is done. You can see how it affected the spec files for multiple services. Plus, it also created a new one for the Analytics service. 
+
+Step 3. PROMPT, Generate Prompts. Always use a fresh session for this.
+
+ON THE AGENT DICTATE: create all the prompts for this feature. 
+
+Step three is done. These are all the prompts that got generated. All prompts follow a template. It varies a bit whether it's a backend or frontend prompt. As you can see, it includes certain things. For instance, study these three files and generate these two files. This makes the prompt more efficient because the agent will not need to file all the hundreds of files on the service. 
+
+Step 4. IMPLEMENT, Apply each prompt inside its service repo. 
+
+This is mainly just copying the prompt and pasting it on the agent of each service.
+
+Step 5. CLOSE, Verify specs against the code, reconcile, log, archive.
+
+ON THE AGENT DICTATE: all prompts for this feature have been implemented and verified. Close the feature.
+
+
+
