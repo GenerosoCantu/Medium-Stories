@@ -43,19 +43,19 @@ From here, the remaining steps are mostly execution. There are not many decision
 
 Step 2. CASCADE, Write the decisions into the affected service spec(s).
 
-ON THE AGENT DICTATE: cascade this feacture into the affected services. 
+ON THE AGENT DICTATE: cascade this feature into the affected services.
 
-Step two is done. You can see how it affected the spec files for multiple services. Plus, it also created a new one for the Analytics service. 
+Step 2 is done. You can see that it updated the spec files for multiple services and also created a new spec for the Analytics service.
 
-Step 3. PROMPT, Generate Prompts. Always use a fresh session for this.
+Step 3. PROMPT, Generate prompts. Always use a fresh session for this step.
 
-ON THE AGENT DICTATE: create all the prompts for this feature. 
+ON THE AGENT DICTATE: create all the prompts for this feature.
 
-Step three is done. These are all the prompts that got generated. All prompts follow a template. It varies a bit whether it's a backend or frontend prompt. As you can see, it includes certain things. For instance, study these three files and generate these two files. This makes the prompt more efficient because the agent will not need to file all the hundreds of files on the service. 
+Step 3 is done. These are all the prompts that were generated. Every prompt follows a template, with slight differences between backend and frontend prompts. For example, each prompt specifies exactly which files to study and which files to generate. This makes execution more efficient because the agent does not need to search through hundreds of files in the service.
 
-Step 4. IMPLEMENT, Apply each prompt inside its service repo. 
+Step 4. IMPLEMENT, Apply each prompt in its service repository.
 
-This is mainly just copying the prompt and pasting it on the agent of each service.
+This step is mainly copying each prompt and running it in the corresponding service repository.
 
 Step 5. CLOSE, Verify specs against the code, reconcile, log, archive.
 
