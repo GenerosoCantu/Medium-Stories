@@ -33,6 +33,12 @@ Now let's begin the workflow.
 
 Step 1: Design a new feature. I design features with AI support. My approach is simple: I start by describing the feature in the agent chat, explaining what I want and how it should work.
 
-The agent takes my input and uses the apllications specs to generate the a new feature file, it also knows where to create, how to structure it and what to include. It'll also ask me questions to fill in the missing gaps.
+The agent takes my input and uses the application specs to generate a new feature file. It also knows where to create it, how to structure it, and what to include. It will ask follow-up questions to fill in any missing gaps.
 
-Once a feature file is created, I review it and work with the agent to polish it, add more details or features, until I am 100% satisfied. 
+Once the feature file is created, I review it with the agent and keep refining it until I am 100% satisfied. One thing worth mentioning is that I never write directly in the feature file. I work through chat, and most of the time I just dictate.
+
+You can see the finished feature with all its details. Even before prompts are generated, the workflow already determines how many prompts are needed and recommends the best model for each one. This is a large feature, and I could have split it into three or four smaller features. But to better showcase the SpecHub workflow, I kept it together.
+
+From here, the remaining steps are mostly execution. There are not many decisions left to make; it is mainly about following the workflow.
+
+Step 2.
