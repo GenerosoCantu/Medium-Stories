@@ -5,14 +5,14 @@ Hi, and welcome. In this demo, I'll walk you through the five-step loop behind t
 
 What you're seeing here is a SpecHub repository. It contains the specs and context documents for the entire application and all of its services.
 
-[Open WORKFLOW]
-As I explained in the article, the AI agent already knows these five steps and how to follow them. It also knows where to find context for the app and all of its services.
-
 [Open CLAUDE.md]
 CLAUDE.md includes instructions that are automatically loaded into each new Claude session. If you're using Copilot, you can use Copilot instructions instead, or an equivalent setup for another AI tool.
 
+[Open WORKFLOW]
+Those instructions point to the WORKFLOW file. So once you configure SpecHub properly, the entire workflow is known to the agent from the start of every session. As I explained in the article, this means the AI agent already knows these five steps and how to follow them, and where to find context for the app and all of its services.
+
 [Open Architecture and Main API]
-This instruction file links to documents that contain context for the application and each service. For example, the architecture overview file covers the whole application, while the Main API file contains context for one microservice.
+These instruction files links to documents that contain context for the application and each service. For example, the architecture overview file covers the whole application, while the Main API file contains context for one microservice.
 
 These files do not contain code. They are compressed context documents for each service in the application.
 
